@@ -20,16 +20,16 @@ export const App = () => {
     }
   };
 
-  const totalFeedback = () => {
+  const countTotalFeedback = () => {
     let total = good + neutral + bad;
     return total;
   };
 
-  const goodPercentage = () => {
-    if (totalFeedback() === 0) {
+  const countPositiveFeedbackPercentage = () => {
+    if (countTotalFeedback() === 0) {
       return 0;
     }
-    return Math.round((good / totalFeedback()) * 100);
+    return Math.round((good / countTotalFeedback()) * 100);
   };
 
   return (
@@ -49,13 +49,13 @@ export const App = () => {
       </Section>
 
       <Section title="Statistics">
-        {totalFeedback() !== 0 ? (
+        {countTotalFeedback() !== 0 ? (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={totalFeedback()}
-            goodPersentage={goodPercentage()}
+            total={countTotalFeedback()}
+            goodPersentage={countPositiveFeedbackPercentage()}
           />
         ) : (
           <Box color="green" fontSize="28px">
