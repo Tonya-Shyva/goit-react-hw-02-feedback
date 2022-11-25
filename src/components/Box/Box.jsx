@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import {
   color,
   space,
@@ -8,6 +9,7 @@ import {
   background,
   border,
   position,
+  fontSize,
 } from 'styled-system';
 
 export const Box = styled('div')(
@@ -18,5 +20,6 @@ export const Box = styled('div')(
   grid,
   background,
   border,
-  position
+  position,
+  fontSize
 );
