@@ -15,11 +15,17 @@ export class App extends Component {
 
   clickHandler = e => {
     if (e === 'Good') {
-      this.setState({ good: this.state.good + 1 });
+      this.setState(prevState => ({
+        good: prevState.good + 1,
+      }));
     } else if (e === 'Neutral') {
-      this.setState({ neutral: this.state.neutral + 1 });
+      this.setState(prevState => ({
+        neutral: prevState.neutral + 1,
+      }));
     } else if (e === 'Bad') {
-      this.setState({ bad: this.state.bad + 1 });
+      this.setState(prevState => ({
+        bad: prevState.bad + 1,
+      }));
     }
   };
 
