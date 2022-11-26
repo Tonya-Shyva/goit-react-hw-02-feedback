@@ -4,6 +4,7 @@ import { Section } from 'components/Section/Section';
 import { Box } from 'components/Box/Box';
 import { Statistics } from 'components/Statistics/Statistics';
 import { Feedbacks } from '../Feedbacks/Feedbacks';
+import { Notification } from 'components/Notification/Notification';
 
 export const App = () => {
   const [good, setGood] = useState(0);
@@ -58,9 +59,7 @@ export const App = () => {
             goodPersentage={countPositiveFeedbackPercentage()}
           />
         ) : (
-          <Box color="green" fontSize="28px">
-            "There is no feedback"
-          </Box>
+          <Notification message="There is no feedback"></Notification>
         )}
       </Section>
     </Box>

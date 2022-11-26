@@ -6,9 +6,9 @@ export function Feedbacks({ states, onLeaveFeedback }) {
   /*console.log(states);*/
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="space-between">
-      {states.map((state, index) => (
+      {states.map(state => (
         <FeedbackButton
-          key={index}
+          key={state}
           type="button"
           onClick={e => {
             // console.log('click', e);
@@ -24,5 +24,4 @@ export function Feedbacks({ states, onLeaveFeedback }) {
 
 Feedbacks.propTypes = {
   states: propTypes.arrayOf(propTypes.string).isRequired,
-  index: propTypes.number,
 };
