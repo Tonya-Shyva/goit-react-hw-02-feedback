@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import { Section } from 'components/Section/Section';
 import { Box } from 'components/Box/Box';
@@ -30,7 +30,8 @@ export class App extends Component {
   };
 
   countTotalFeedback = () => {
-    const total = this.state.good + this.state.neutral + this.state.bad;
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
     return total;
   };
 
@@ -45,6 +46,7 @@ export class App extends Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <Box
         maxWidth="480px"
@@ -64,9 +66,9 @@ export class App extends Component {
         <Section title="Statistics">
           {this.countTotalFeedback() !== 0 ? (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={this.countTotalFeedback()}
               goodPercentage={this.countPositiveFeedbackPercentage()}
             />
