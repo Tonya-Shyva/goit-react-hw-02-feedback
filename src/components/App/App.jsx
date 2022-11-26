@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { Component } from 'react';
 
 import { Section } from 'components/Section/Section';
 import { Box } from 'components/Box/Box';
@@ -6,62 +6,66 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { Feedbacks } from '../Feedbacks/Feedbacks';
 import { Notification } from 'components/Notification/Notification';
 
-export const App = () => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
 
-  const clickHandler = e => {
+  clickHandler = e => {
     if (e === 'Good') {
-      setGood(good + 1);
+      this.setState({ good: this.state.good + 1 });
     } else if (e === 'Neutral') {
-      setNeutral(neutral + 1);
+      this.setState({ neutral: this.state.neutral + 1 });
     } else if (e === 'Bad') {
-      setBad(bad + 1);
+      this.setState({ bad: this.state.bad + 1 });
     }
   };
 
-  const countTotalFeedback = () => {
-    let total = good + neutral + bad;
+  countTotalFeedback = () => {
+    const total = this.state.good + this.state.neutral + this.state.bad;
     return total;
   };
 
-  const countPositiveFeedbackPercentage = () => {
-    if (countTotalFeedback() === 0) {
-      return 0;
-    }
-    return Math.round((good / countTotalFeedback()) * 100);
+  countPositiveFeedbackPercentage = () => {
+    const positiveFeedbackPercentage = Math.round(
+      (this.state.good / this.countTotalFeedback()) * 100
+    );
+    return positiveFeedbackPercentage;
   };
 
-  return (
-    <Box
-      maxWidth="480px"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      ml="auto"
-      mr="auto"
-    >
-      <Section title="Please leave feedback">
-        <Feedbacks
-          states={['Good', 'Neutral', 'Bad']}
-          onLeaveFeedback={clickHandler}
-        ></Feedbacks>
-      </Section>
+  render() {
+    return (
+      <Box
+        maxWidth="480px"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        ml="auto"
+        mr="auto"
+      >
+        <Section title="Please leave feedback">
+          <Feedbacks
+            states={['Good', 'Neutral', 'Bad']}
+            onLeaveFeedback={this.clickHandler}
+          ></Feedbacks>
+        </Section>
 
-      <Section title="Statistics">
-        {countTotalFeedback() !== 0 ? (
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={countTotalFeedback()}
-            goodPersentage={countPositiveFeedbackPercentage()}
-          />
-        ) : (
-          <Notification message="There is no feedback"></Notification>
-        )}
-      </Section>
-    </Box>
-  );
-};
+        <Section title="Statistics">
+          {this.countTotalFeedback() !== 0 ? (
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.countTotalFeedback()}
+              goodPersentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification message="There is no feedback"></Notification>
+          )}
+        </Section>
+      </Box>
+    );
+  }
+}
