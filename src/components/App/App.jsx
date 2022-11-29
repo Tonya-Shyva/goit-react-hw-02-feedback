@@ -13,20 +13,11 @@ export class App extends Component {
     bad: 0,
   };
 
-  clickHandler = e => {
-    if (e === 'Good') {
-      this.setState(prevState => ({
-        good: prevState.good + 1,
-      }));
-    } else if (e === 'Neutral') {
-      this.setState(prevState => ({
-        neutral: prevState.neutral + 1,
-      }));
-    } else if (e === 'Bad') {
-      this.setState(prevState => ({
-        bad: prevState.bad + 1,
-      }));
-    }
+  clickHandler = option => {
+    // console.log(option);
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback = () => {
@@ -58,7 +49,7 @@ export class App extends Component {
       >
         <Section title="Please leave feedback">
           <Feedbacks
-            states={['Good', 'Neutral', 'Bad']}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.clickHandler}
           ></Feedbacks>
         </Section>

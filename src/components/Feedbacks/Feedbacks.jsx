@@ -1,21 +1,21 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Box } from 'components/Box/Box';
 import { FeedbackButton } from './Feedbacks.styled';
 
-export function Feedbacks({ states, onLeaveFeedback }) {
+export function Feedbacks({ options, onLeaveFeedback }) {
   /*console.log(states);*/
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="space-between">
-      {states.map(state => (
+      {options.map(option => (
         <FeedbackButton
-          key={state}
+          key={option}
           type="button"
-          onClick={e => {
+          onClick={() => {
             // console.log('click', e);
-            onLeaveFeedback(state);
+            onLeaveFeedback(option);
           }}
         >
-          {state}
+          {option}
         </FeedbackButton>
       ))}
     </Box>
@@ -23,5 +23,5 @@ export function Feedbacks({ states, onLeaveFeedback }) {
 }
 
 Feedbacks.propTypes = {
-  states: propTypes.arrayOf(propTypes.string).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

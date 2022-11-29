@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Box } from 'components/Box/Box';
 import { StatisticItem } from './Statistics.styled';
 
@@ -15,9 +15,9 @@ export function Statistics({ good, neutral, bad, total, goodPercentage }) {
 }
 
 Statistics.propTypes = {
-  good: propTypes.number.isRequired,
-  neutral: propTypes.number.isRequired,
-  bad: propTypes.number.isRequired,
-  total: propTypes.number.isRequired,
-  goodPercentage: propTypes.number.isRequired,
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  goodPercentage: PropTypes.number.isRequired,
 };

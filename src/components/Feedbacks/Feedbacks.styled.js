@@ -10,6 +10,7 @@ export const FeedbackButton = styled.button`
   font-weight: ${p => p.theme.fontWeights.normal};
   line-height: ${p => p.theme.lineHeights.body};
   text-align: center;
+  text-transform: capitalize;
   color: ${p => p.theme.colors.text};
   background-color: ${p => p.theme.colors.bcg};
   cursor: pointer;
